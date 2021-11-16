@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol AddEditPlayerDelegate {
+    func playerCreated(player: Player)
+    func editedPlayer(player: Player)
+}
+
 class AddEditPlayerViewController: UIViewController {
     
     var player: Player?
+    var delegate: AddEditPlayerDelegate?
 
     @IBOutlet weak var playerNameTextField: UITextField!
     @IBOutlet weak var currentScoreTextField: UITextField!
@@ -45,19 +51,21 @@ class AddEditPlayerViewController: UIViewController {
                     //Edit existing player
                     player.name = playerName
                     player.score = intPlayerScore
-                    PlayerData.edit(player: player)
+//                    PlayerData.edit(player: player)
+                    delegate?.editedPlayer(player: player)
+                    navigationController?.popViewController(animated: true)
                 } else {
                     //Create a new player
                     let newPlayer = Player(name: playerName, score: intPlayerScore)
-                    PlayerData.addNew(player: newPlayer)
-                       
-                    
+//                    PlayerData.addNew(player: newPlayer)
+                    delegate?.playerCreated(player: newPlayer)
+                    navigationController?.popViewController(animated: true)
                 }
             }
             
         }
         
-        navigationController?.popViewController(animated: true)
+        
     }
     
     /*

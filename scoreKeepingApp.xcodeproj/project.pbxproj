@@ -17,6 +17,12 @@
 		A366FE03271F18BF00CAA560 /* PlayerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366FE02271F18BF00CAA560 /* PlayerTableViewController.swift */; };
 		A366FE05271F207B00CAA560 /* CustomPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A366FE04271F207B00CAA560 /* CustomPlayerTableViewCell.swift */; };
 		A3818634271FADBF00B5441B /* AddEditPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3818633271FADBF00B5441B /* AddEditPlayerViewController.swift */; };
+		A3C95220273A20540017664E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C9521F273A20540017664E /* Game.swift */; };
+		A3C95223273A24CF0017664E /* CustomGameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C95222273A24CF0017664E /* CustomGameTableViewCell.swift */; };
+		A3FB0390273EB7EE00FD2A28 /* GameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB038F273EB7EE00FD2A28 /* GameTableViewController.swift */; };
+		A3FB0392273EB8D300FD2A28 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0391273EB8D300FD2A28 /* GameData.swift */; };
+		A3FB0394273EC6CE00FD2A28 /* AddEditGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0393273EC6CE00FD2A28 /* AddEditGameViewController.swift */; };
+		A3FB0399273EC90A00FD2A28 /* CustomBlandPlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FB0398273EC90A00FD2A28 /* CustomBlandPlayerTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		A366FE02271F18BF00CAA560 /* PlayerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewController.swift; sourceTree = "<group>"; };
 		A366FE04271F207B00CAA560 /* CustomPlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPlayerTableViewCell.swift; sourceTree = "<group>"; };
 		A3818633271FADBF00B5441B /* AddEditPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditPlayerViewController.swift; sourceTree = "<group>"; };
+		A3C9521F273A20540017664E /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		A3C95222273A24CF0017664E /* CustomGameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGameTableViewCell.swift; sourceTree = "<group>"; };
+		A3FB038F273EB7EE00FD2A28 /* GameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewController.swift; sourceTree = "<group>"; };
+		A3FB0391273EB8D300FD2A28 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		A3FB0393273EC6CE00FD2A28 /* AddEditGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditGameViewController.swift; sourceTree = "<group>"; };
+		A3FB0398273EC90A00FD2A28 /* CustomBlandPlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomBlandPlayerTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,19 +76,57 @@
 		A366FDE9271F118D00CAA560 /* scoreKeepingApp */ = {
 			isa = PBXGroup;
 			children = (
+				A3FB0395273EC8A500FD2A28 /* views */,
+				A3C95221273A206B0017664E /* models */,
 				A366FDEA271F118D00CAA560 /* AppDelegate.swift */,
 				A366FDEC271F118D00CAA560 /* SceneDelegate.swift */,
 				A366FDF0271F118D00CAA560 /* Main.storyboard */,
-				A3818633271FADBF00B5441B /* AddEditPlayerViewController.swift */,
-				A366FE04271F207B00CAA560 /* CustomPlayerTableViewCell.swift */,
-				A366FE02271F18BF00CAA560 /* PlayerTableViewController.swift */,
-				A366FDFE271F122400CAA560 /* Player.swift */,
-				A366FE00271F12EB00CAA560 /* PlayerData.swift */,
 				A366FDF3271F119200CAA560 /* Assets.xcassets */,
 				A366FDF5271F119200CAA560 /* LaunchScreen.storyboard */,
 				A366FDF8271F119200CAA560 /* Info.plist */,
 			);
 			path = scoreKeepingApp;
+			sourceTree = "<group>";
+		};
+		A3C95221273A206B0017664E /* models */ = {
+			isa = PBXGroup;
+			children = (
+				A366FDFE271F122400CAA560 /* Player.swift */,
+				A366FE00271F12EB00CAA560 /* PlayerData.swift */,
+				A3C9521F273A20540017664E /* Game.swift */,
+				A3FB0391273EB8D300FD2A28 /* GameData.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		A3FB0395273EC8A500FD2A28 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				A3FB0397273EC8C800FD2A28 /* tableViewCells */,
+				A3FB0396273EC8B500FD2A28 /* viewControllers */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		A3FB0396273EC8B500FD2A28 /* viewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A3FB0393273EC6CE00FD2A28 /* AddEditGameViewController.swift */,
+				A3FB038F273EB7EE00FD2A28 /* GameTableViewController.swift */,
+				A3818633271FADBF00B5441B /* AddEditPlayerViewController.swift */,
+				A366FE02271F18BF00CAA560 /* PlayerTableViewController.swift */,
+			);
+			path = viewControllers;
+			sourceTree = "<group>";
+		};
+		A3FB0397273EC8C800FD2A28 /* tableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				A3C95222273A24CF0017664E /* CustomGameTableViewCell.swift */,
+				A366FE04271F207B00CAA560 /* CustomPlayerTableViewCell.swift */,
+				A3FB0398273EC90A00FD2A28 /* CustomBlandPlayerTableViewCell.swift */,
+			);
+			path = tableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,11 +202,17 @@
 			files = (
 				A366FE03271F18BF00CAA560 /* PlayerTableViewController.swift in Sources */,
 				A366FE05271F207B00CAA560 /* CustomPlayerTableViewCell.swift in Sources */,
+				A3FB0399273EC90A00FD2A28 /* CustomBlandPlayerTableViewCell.swift in Sources */,
 				A366FDFF271F122400CAA560 /* Player.swift in Sources */,
 				A366FE01271F12EB00CAA560 /* PlayerData.swift in Sources */,
+				A3FB0392273EB8D300FD2A28 /* GameData.swift in Sources */,
+				A3C95223273A24CF0017664E /* CustomGameTableViewCell.swift in Sources */,
+				A3FB0394273EC6CE00FD2A28 /* AddEditGameViewController.swift in Sources */,
+				A3FB0390273EB7EE00FD2A28 /* GameTableViewController.swift in Sources */,
 				A366FDEB271F118D00CAA560 /* AppDelegate.swift in Sources */,
 				A3818634271FADBF00B5441B /* AddEditPlayerViewController.swift in Sources */,
 				A366FDED271F118D00CAA560 /* SceneDelegate.swift in Sources */,
+				A3C95220273A20540017664E /* Game.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

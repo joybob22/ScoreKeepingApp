@@ -10,6 +10,7 @@ import UIKit
 class CustomPlayerTableViewCell: UITableViewCell {
     
     var playerId: UUID = UUID()
+    var gameId: UUID = UUID()
 
     @IBOutlet weak var playerNameLabel: UILabel!
     @IBOutlet weak var playerScoreLabel: UILabel!
@@ -25,15 +26,17 @@ class CustomPlayerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configurePlayerCell(player: Player) {
+    func configurePlayerCell(player: Player, gameId: UUID) {
         playerNameLabel.text = player.name
         playerScoreLabel.text = String(player.score)
         stepper.value = Double(player.score)
         playerId = player.id
+        self.gameId = gameId
     }
 
     @IBAction func stepperTapped(_ sender: UIStepper) {
         playerScoreLabel.text = String(Int(sender.value))
-        PlayerData.edit(playerScore: Int(sender.value), playerId)
+//        PlayerData.edit(playerScore: Int(sender.value), playerId)
+        GameData.updatePlayerAndSort(playerScore: Int(sender.value), playerId, gameId)
     }
 }

@@ -7,19 +7,42 @@
 
 import UIKit
 
-class PlayerTableViewController: UITableViewController, NewPlayerData {
+class PlayerTableViewController: UITableViewController, EditedGameDelegate, UpdatePlayer {
+    
+    
+    
+    var game: Game?
+    var delegate: EditedGameDelegate?
 
     @IBOutlet var tableViewOutlet: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        PlayerData.listener = self
+//        PlayerData.listener = self
+        GameData.updatePlayerScoreListener = self
+    }
+    
+    init? (coder: NSCoder, game: Game?) {
+        super.init(coder: coder)
+        self.game = game
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // Delegation methods
     
-    func movePlayer(start: Int, to: Int) {
+    func gameEdited(game: Game) {
+        self.game = game
+        tableView.reloadData()
+        delegate?.gameEdited(game: game)
+    }
+    
+    func movePlayer(start: Int, to: Int, gameIndex: Int) {
+        game = GameData.currentGames[gameIndex]
         tableView.moveRow(at: IndexPath(row: start, section: 0), to: IndexPath(row: to, section: 0))
         tableView.reloadRows(at: [IndexPath(row: to, section: 0)], with: .automatic)
+        
     }
     
     func addPlayer(to: Int) {
@@ -38,7 +61,12 @@ class PlayerTableViewController: UITableViewController, NewPlayerData {
         return AddEditPlayerViewController(coder: coder, player: nil)
     }
     
-
+    @IBSegueAction func editGameSegue(_ coder: NSCoder, sender: Any?) -> AddEditGameViewController? {
+        let vc = AddEditGameViewController(coder: coder, game: game)
+        vc?.editedDelegate = self
+        return vc
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,17 +74,25 @@ class PlayerTableViewController: UITableViewController, NewPlayerData {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PlayerData.currentPlayers.count
+        if let game = game {
+            return game.players.count
+        }
+        return 0
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as! CustomPlayerTableViewCell
-        
-        let currentPlayer = PlayerData.currentPlayers[indexPath.row]
-        cell.configurePlayerCell(player: currentPlayer)
+        if let game = game {
+            let currentPlayer = game.players[indexPath.row]
+            cell.configurePlayerCell(player: currentPlayer, gameId: game.id)
+        }
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 
@@ -73,8 +109,8 @@ class PlayerTableViewController: UITableViewController, NewPlayerData {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            PlayerData.delete(index: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            PlayerData.delete(index: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
